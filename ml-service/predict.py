@@ -1,9 +1,16 @@
 import joblib
 import pandas as pd
+from fastapi import FastAPI
+app=FastAPI()
 
 model=joblib.load('fatigue_model.pkl')
 encoders=joblib.load('encoders.pkl')
 
+@app.get("/")
+def  root():
+    return "Running fast api"
+
+@app.post('/predict')
 def predict_fatigue(inputData:dict):
     df = pd.DataFrame([inputData])
 
@@ -21,14 +28,14 @@ def predict_fatigue(inputData:dict):
         "confidence":round(float(confidence),2)
     }
 
-if __name__ == "__main__":
-    sample_input = {
-        "meetings_per_day": 5,
-        "total_minutes": 260,
-        "break_minutes": 20,
-        "role": "developer",
-        "meeting_type": "online"
-    }
+# if __name__ == "__main__":
+#     sample_input = {
+#         "meetings_per_day": 5,
+#         "total_minutes": 260,
+#         "break_minutes": 20,
+#         "role": "developer",
+#         "meeting_type": "online"
+#     }
 
-    result = predict_fatigue(sample_input)
-    print(result)
+#     result = predict_fatigue(sample_input)
+#     print(result)
