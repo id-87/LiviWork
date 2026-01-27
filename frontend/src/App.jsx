@@ -7,6 +7,7 @@ import axios from 'axios'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [result, setResult] = useState(null);
   const [mpd,setMpd]=useState("")
   const [tm,setTm]=useState("")
   const [role,setRole]=useState("")
@@ -14,9 +15,16 @@ function App() {
   const [mt,setMt]=useState("")
   const url=import.meta.env.VITEBaseURL
 
-  const handleSubmit=async()=>{
-
-
+  const handleSubmit=async(e)=>{
+    e.preventDefault()
+    const data=await axios.post(url,{
+      "meetings_per_day":Number(mpd),
+      "total_minutes":Number(tm),
+      "break_minutes":Number(bm),
+      "role":role,
+      "meeting_type":mt
+    })
+    setResult(data.data)
   }
 //   {
 //   "meetings_per_day": 5,
