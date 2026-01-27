@@ -2,32 +2,47 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import axios from 'axios'
+
 
 function App() {
   const [count, setCount] = useState(0)
+  const [mpd,setMpd]=useState("")
+  const [tm,setTm]=useState("")
+  const [role,setRole]=useState("")
+  const [bm,setBm]=useState("")
+  const [mt,setMt]=useState("")
+  const url=import.meta.env.VITEBaseURL
+
+  const handleSubmit=async()=>{
+
+
+  }
+//   {
+//   "meetings_per_day": 5,
+//   "total_minutes": 260,
+//   "break_minutes": 20,
+//   "role": "developer",
+//   "meeting_type": "online"
+// }
+
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <p>Welcome to LiviWork</p>
+      <form onSubmit={handleSubmit}>
+        <label >Meetings per day <input type="text" value={mpd} onChange={(e)=>setMpd(e.target.value)} /></label>
+        <br />
+        <label >Total Minutes <input type="text" value={tm} onChange={(e)=>setTm(e.target.value)} /></label>
+        <br />
+        <label >Role <input type="text" value={role} onChange={(e)=>setRole(e.target.value)} /></label>
+        <br />
+        <label >Break Minutes <input type="text" value={bm} onChange={(e)=>setBm(e.target.value)} /></label>
+        <br />
+        <label >Meeting Type <input type="text" value={mt} onChange={(e)=>setMt(e.target.value)} /></label>
+        
+        <button type='submit'>Analyse</button>
+      </form>
     </>
   )
 }
