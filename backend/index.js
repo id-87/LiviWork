@@ -6,7 +6,7 @@ app.use(cors())
 app.use(express.json())
 const axios=require('axios')
 const mlURL=process.env.mlURL
-
+//
 app.get('/',(req,res)=>{
     res.send('Heal')
 
@@ -39,7 +39,7 @@ app.post('/predict',async(req,res)=>{
     }
     catch(err){
         console.log(err)
-        res.send("Error")
+        res.send(err.message)
     }
     
 
