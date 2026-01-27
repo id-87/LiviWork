@@ -1,6 +1,8 @@
 const express=require("express")
 require('dotenv').config()
+const cors=require('cors')
 const app=express()
+app.use(cors())
 app.use(express.json())
 const axios=require('axios')
 const mlURL=process.env.mlURL
@@ -12,6 +14,7 @@ app.get('/',(req,res)=>{
 
 app.post('/predict',async(req,res)=>{
     const {meetings_per_day,total_minutes,break_minutes,role,meeting_type}=req.body
+    console.log(req.body)
     try{
         if (
     typeof meetings_per_day !== "number" ||
