@@ -8,15 +8,17 @@ import axios from 'axios'
 function App() {
   const [count, setCount] = useState(0)
   const [result, setResult] = useState(null);
+  const [data,setData]=useState(false)
   const [mpd,setMpd]=useState("")
   const [tm,setTm]=useState("")
   const [role,setRole]=useState("")
   const [bm,setBm]=useState("")
   const [mt,setMt]=useState("")
-  const url=import.meta.env.VITEBaseURL
+  const url=import.meta.env.VITE_BASE_URL
 
   const handleSubmit=async(e)=>{
     e.preventDefault()
+    try{
     const data=await axios.post(url,{
       "meetings_per_day":Number(mpd),
       "total_minutes":Number(tm),
@@ -25,6 +27,10 @@ function App() {
       "meeting_type":mt
     })
     setResult(data.data)
+  }catch(err){
+    console.log(err)
+    alert("Failed to get prediction")
+  }
   }
 //   {
 //   "meetings_per_day": 5,
@@ -37,20 +43,37 @@ function App() {
 
   return (
     <>
+
       <p>Welcome to LiviWork</p>
+      {result? <>
+      <p>Fatigue Level:{result.fatigueLevel}</p>
+      <p>Confidence:{result.confidence}</p>
+      </>:
+      
       <form onSubmit={handleSubmit}>
-        <label >Meetings per day <input type="text" value={mpd} onChange={(e)=>setMpd(e.target.value)} /></label>
+        <label >Meetings per day <input type="number" value={mpd} onChange={(e)=>setMpd(e.target.value)} /></label>
         <br />
-        <label >Total Minutes <input type="text" value={tm} onChange={(e)=>setTm(e.target.value)} /></label>
+        <label >Total Minutes <input type="number" value={tm} onChange={(e)=>setTm(e.target.value)} /></label>
         <br />
-        <label >Role <input type="text" value={role} onChange={(e)=>setRole(e.target.value)} /></label>
+        <label >Role <select value={role} onChange={(e) => setRole(e.target.value)}>
+  <option value="">Select role</option>
+  <option value="student">Student</option>
+  <option value="developer">Developer</option>
+  <option value="manager">Manager</option>
+</select></label>
         <br />
-        <label >Break Minutes <input type="text" value={bm} onChange={(e)=>setBm(e.target.value)} /></label>
+        <label >Break Minutes <input type="number" value={bm} onChange={(e)=>setBm(e.target.value)} /></label>
         <br />
-        <label >Meeting Type <input type="text" value={mt} onChange={(e)=>setMt(e.target.value)} /></label>
-        
+        <label >Meeting Type <select value={mt} onChange={(e) => setMt(e.target.value)}>
+  <option value="">Select meeting type</option>
+  <option value="online">Online</option>
+  <option value="offline">Offline</option>
+</select>
+</label>
+        <br />
         <button type='submit'>Analyse</button>
       </form>
+}
     </>
   )
 }
