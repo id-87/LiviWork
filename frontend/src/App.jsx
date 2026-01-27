@@ -27,6 +27,7 @@ function App() {
       "meeting_type":mt
     })
     setResult(data.data)
+    console.log(result.fatigueLevel,result.confidence)
   }catch(err){
     console.log(err)
     alert("Failed to get prediction")
@@ -47,6 +48,7 @@ function App() {
       <p>Welcome to LiviWork</p>
       {result? <>
       <p>Fatigue Level:{result.fatigueLevel}</p>
+      
       <p>Confidence:{result.confidence}</p>
       </>:
       
