@@ -7,6 +7,8 @@ import axios from 'axios'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [loading, setLoading] = useState(false);
+
   const [result, setResult] = useState(null);
   const [data,setData]=useState(false)
   const [mpd,setMpd]=useState("")
@@ -18,6 +20,8 @@ function App() {
 
   const handleSubmit=async(e)=>{
     e.preventDefault()
+    if (loading) return; // 🔒 prevent double submit
+  setLoading(true);
     try{
     const data=await axios.post(url,{
       "meetings_per_day":Number(mpd),
@@ -31,6 +35,8 @@ function App() {
   }catch(err){
     console.log(err)
     alert("Failed to get prediction")
+  }finally {
+    setLoading(false);
   }
   }
 //   {
