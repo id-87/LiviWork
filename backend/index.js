@@ -12,6 +12,16 @@ app.get('/',(req,res)=>{
 
 })
 
+app.get('/ml',async(req,res)=>{
+    try{
+        const data=await axios.get(mlURL)
+        return res.send(data)
+    }
+    catch(err){
+        res.send(err.message)
+    }
+})
+
 app.post('/predict',async(req,res)=>{
     const {meetings_per_day,total_minutes,break_minutes,role,meeting_type}=req.body
     console.log(req.body)
