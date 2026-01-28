@@ -23,7 +23,7 @@ function App() {
     if (loading) return; // 🔒 prevent double submit
   setLoading(true);
     try{
-    const data=await axios.post(url,{
+    const data=await axios.post('https://liviwork.onrender.com/predict',{
       "meetings_per_day":Number(mpd),
       "total_minutes":Number(tm),
       "break_minutes":Number(bm),
