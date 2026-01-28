@@ -18,7 +18,7 @@ app.get('/ml',async(req,res)=>{
         return res.send(data)
     }
     catch(err){
-        res.send(err.message)
+        res.send(JSON.stringify(err.message))
     }
 })
 
