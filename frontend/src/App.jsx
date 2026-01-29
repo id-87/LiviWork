@@ -20,7 +20,7 @@ function App() {
 
   const handleSubmit=async(e)=>{
     e.preventDefault()
-    if (loading) return; // 🔒 prevent double submit
+    if (loading) return; 
   setLoading(true);
     try{
     const data=await axios.post('https://liviwork-backend.onrender.com/predict',{
