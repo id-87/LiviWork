@@ -51,7 +51,7 @@ function App() {
   return (
     <>
 
-      <h1>Welcome to LiviWork</h1>
+      <h1>LiviWork</h1>
       {result? <>
       <h2>Fatigue Level:{result.fatigueLevel}</h2>
       
