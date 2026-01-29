@@ -51,11 +51,11 @@ function App() {
   return (
     <>
 
-      <p>Welcome to LiviWork</p>
+      <h1>Welcome to LiviWork</h1>
       {result? <>
-      <p>Fatigue Level:{result.fatigueLevel}</p>
+      <h2>Fatigue Level:{result.fatigueLevel}</h2>
       
-      <p>Confidence:{result.confidence}</p>
+      <h4>Confidence:{result.confidence}</h4>
       </>:
       
       <form onSubmit={handleSubmit}>
