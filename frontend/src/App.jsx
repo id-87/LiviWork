@@ -6,11 +6,11 @@ import axios from 'axios'
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
   const [loading, setLoading] = useState(false);
 
   const [result, setResult] = useState(null);
-  const [data,setData]=useState(false)
+  // const [data,setData]=useState(false)
   const [mpd,setMpd]=useState("")
   const [tm,setTm]=useState("")
   const [role,setRole]=useState("")
